@@ -1,0 +1,251 @@
+spatialite (4.1.1-5ubuntu1) trusty; urgency=medium
+
+  * Ignore test results on arm64. See LP: #1284199.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 26 Feb 2014 12:31:05 +0100
+
+spatialite (4.1.1-5) experimental; urgency=low
+
+  * Enable building with libxml2 support.
+  * Add 11-link-libxml2.patch to link libxml2 when building test cases.
+  * Update symbols file for XML related symbols.
+  * Bump Standards-Version to 3.9.5, no changes required.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Sat, 14 Dec 2013 16:03:47 +0100
+
+spatialite (4.1.1-4) experimental; urgency=low
+
+  * Change Priority to optional, keep Priority extra for -dbg package.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Thu, 21 Nov 2013 23:30:58 +0100
+
+spatialite (4.1.1-3) experimental; urgency=low
+
+  * Disable tests only on architectures where they fail.
+  * Disable additional testcases failing on arm* and mips*.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Thu, 14 Nov 2013 15:10:23 +0100
+
+spatialite (4.1.1-2) experimental; urgency=low
+
+  * Disable hexgrid22.testcase, fails on 32bit archs.
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Mon, 21 Oct 2013 13:32:59 +0200
+
+spatialite (4.1.1-1) experimental; urgency=low
+
+  * New upstream version.
+  * Update debian/watch, use sepwatch improvements and address common mistakes.
+  * Use dh-autoreconf to run autoreconf during build.
+  * Update copyright file, use copyright-format 1.0 (dep5).
+  * Use canonical URLs for Vcs-* fields.
+  * Add lintian overrides for no upstream changelog, link to online timeline.
+  * Strip debian revision in symbols file.
+  * Use upstream version without debian revision when generating symbols.
+  * Add patch to set automake option subdir-objects.
+  * Bump Standards-Version to 3.9.4, changes: copyright, Vcs-* fields, symbols.
+  * Update Homepage URL.
+  * Disable fromgeojson22.testcase on advise from upstream, fails on armel,
+    armhf, mips & mipsel with a minor rounding difference.
+    (closes: #725267)
+  * Fix dev package description.
+    (closes: #725717)
+
+ -- Bas Couwenberg <sebastic@xs4all.nl>  Sun, 29 Sep 2013 22:00:45 +0200
+
+spatialite (4.1.0-1~ubuntu1) experimental; urgency=low
+
+  * New upstream release.
+  * Updated symbols file.
+  * Updated 07-fix_spatialite_pc.patch.
+  * Added zlib1g-dev to build-deps.
+
+ -- Jerome Villeneuve Larouche <jlarouche@mapgears.com>  Tue, 18 Jun 2013 10:56:13 -0400
+
+spatialite (4.0.0-1) experimental; urgency=low
+
+  * New upstream version.
+  * Updated debian/watch.
+  * Patchset refreshed, 04-fix_missing_define.patch dropped.
+  * Debhelper compatibility bumped to 9.
+  * Standards-Version bump to 3.9.4, no changes needed.
+  * Also build a debugging symbols package: libspatialite3-dbg.
+  * SONAME bump: from libspatialite3 to libspatialite5.
+  * Updated symbols file.
+  * Backup and restore test databases, they get modified during
+    build-time tests.
+  * Multi-archified package.
+
+ -- David Paleino <dapal@debian.org>  Sat, 01 Dec 2012 18:25:53 +0100
+
+spatialite (3.1.0~rc2-1) unstable; urgency=low
+
+  * New upstream release candidate.
+  * Removed 05-dont_relink.patch and 06-fix_soname.patch, both merged
+    upstream.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Tue, 03 Apr 2012 15:07:12 +0200
+
+spatialite (3.0.2~20120302-1) unstable; urgency=low
+
+  * New upstream pre-release.
+  * Added 07-fix_spatialite_pc.patch: now avoid re-linking also in spatialite.pc 
+    file.
+  * Patchset refreshed.
+  * New SONAME set to be compatible with that issued until now.
+  * Updated symbols file.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Fri, 02 Mar 2012 12:57:36 +0100
+
+spatialite (3.0.1-1) unstable; urgency=low
+
+  * New upstream release.
+    (closes: #661018)
+  * Patchset refreshed. Finally, Sandro is now following a sane policy with 
+    SONAME versioning. Better than never.
+  * This version is compatible with Freexl >= 1.0.0 only.
+  * Now spatialite source includes the library only, spatialite-tools moved
+    to a new package.
+  * Rules script greatly semplified.
+  * For safety added a Breaks against previous version of spatialite-bin,
+    that should allow a more smooth upgrade with new splitted packages.
+  * Force Geos 3.3+ use for a working test suite.
+  * Policy bumped to 3.9.3. No changes required.
+  * Added a patch 05-dont_relink.patch to avoid (superfluous) relinking against
+    the C++ geos library. It now causes a failure at configuration time
+    because the C/C++ libraries are now splitted.
+  * Added a 06-fix_soname.patch patch to use a correct SONAME versioning.
+  * Symbol file updated for current 3.0.1.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Mon, 27 Feb 2012 14:36:30 +0100
+
+spatialite (3.0.0~beta20110817-3) unstable; urgency=low
+
+  [ Francesco Paolo Lovergine ]
+  * Fixed linking order for sqlite3 in debian patch 00-systemlibs.patch.
+    (closes: #638929)
+
+  [ David Paleino ]
+  * Conditionally disable full EPSG initialization (for srs_init.c)
+    on powerpc, and document what projections are available on that
+    architecture (Closes: #649302)
+
+ -- David Paleino <dapal@debian.org>  Mon, 21 Nov 2011 12:10:43 +0100
+
+spatialite (3.0.0~beta20110817-2) unstable; urgency=low
+
+  * Added 04-fix_missing_define.patch to re-add GAIA_WAVELET_BLOB support
+    as used by current rasterlite.
+    (closes: #646463, #646450)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Thu, 27 Oct 2011 12:17:11 +0200
+
+spatialite (3.0.0~beta20110817-1) unstable; urgency=low
+
+  [ Alan Boudreault ]
+  * Added libexpat1-dev as build-dep.
+
+  [ Francesco Paolo Lovergine ]
+  * Fixed get-orig-tarball to use full version for pre-release tarballs.
+  * Policy bumped to 3.9.2, without changes.
+  * The mega-patch systemlibs.diff has been updated.
+  * Removed .pc file manipulation. 
+
+  [ David Paleino ]
+  * New upstream pre-release
+  * Use "3.0 (quilt)" source format.
+  * systemlibs.diff renamed to 00-systemlibs.patch, and refreshed to only
+    include significant changes. Autotools files are now updated and cleaned
+    by dh-autoreconf.
+  * debian/rules rewritten using dh7.
+  * debian/rules: rename get-orig-tarball target to get-orig-source.
+  * Update Vcs-* fields to reflect SVN→Git migration
+  * Added myself to Uploaders
+  * Split 'foreign' addition to AUTOMAKE_OPTIONS from 00-systemlibs.patch.
+  * Add Build-Depends on libfreexl-dev
+  * Bump debhelper compatibility to 8
+
+ -- David Paleino <dapal@debian.org>  Sat, 08 Oct 2011 21:09:50 +0200
+
+spatialite (2.4.0~rc2-5) unstable; urgency=medium
+
+  [ Alan Boudreault ]
+  * Added spatialite_tool and spatialite_osm binaries in spatialite-bin.
+  * Changed build-dep libsqlite3-dev to (>= 3.6.11): spatialite uses "hot backup"
+    interface of sqlite3.
+    (closes: #576743)
+  * VirtualText has been updated long time ago.
+    (closes: #530422)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Mon, 24 May 2010 11:02:26 +0200
+
+spatialite (2.4.0~rc2-4) unstable; urgency=medium
+
+  * Now -dev package depends also on libsqlite3-dev.
+  * Added a symlink for sqlite3.h within /usr/include/spatialite because other
+    softwares could look for that at configure time (e.g. ATM gdal).
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Fri, 07 May 2010 14:53:21 +0200
+
+spatialite (2.4.0~rc2-3) unstable; urgency=medium
+
+  * Restored right version of .install file.
+    (closes: #577568)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Sun, 18 Apr 2010 22:43:15 +0200
+
+spatialite (2.4.0~rc2-2) unstable; urgency=low
+
+  * Fixed wrong dependency in the -dev package, still around after
+    libtool version change.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Sun, 04 Apr 2010 08:07:52 +0200
+
+spatialite (2.4.0~rc2-1) unstable; urgency=low
+
+  * New upstream pre-release candidate.
+  * A new mega-patch systemlibs.diff introduced to use system-wide
+    sqlite3 stuff and drop the libtool helpers use for sqlite3, geos and proj.
+    Also changed libtool versioning to avoid not proper SONAME bumping, after
+    a private thread with Sandro.
+    (closes: #567615)
+  * Revised the get-orig-source to work with a single upstream archive.
+    That renders the archive compatible with dpkg format 3.0.
+    (closes: #538566)
+  * Now use libreadline-dev as build-dep.
+    (closes: #553855)
+  * Do not install spatialite .la file as well.
+  * Added Vcs-* fields.
+  * Policy bumped to 3.8.4.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Thu, 25 Mar 2010 16:02:42 +0100
+
+spatialite (2.3.0-1) unstable; urgency=low
+
+  * New upstream release with partial repackaing to cope with upstream changes.
+  * New upstream packaging: now this package includes all spatialite-related 
+    tarballs to provide the whole set of binary packages, based on the 
+    amalgameted sources.
+  * Added quilt support. Now the upstream tarball is included as a
+    compressed archive to facilitate interactive cleanaups and patching.
+  * [PATCH] split.diff removes embedded sqlite3 and uses system library.
+    The patch is built by autoreconfiguring a suitable fixed automake
+    root file.
+  * [PATCH] tools.diff allows building without pre-installation and fixes use
+    of static libs instead of libtools helpers for external libraries.
+  * Removed superfluous removing of *-stamp files.
+  * Removed init SQL file, initialization is now embedded in the library.
+  * Removed README installation: it documents purely installation.
+  * Currently still does not build spatialite-gui.
+  * Now the library is distributed under MPL 1.1, tools under GPL-3: changed
+    debian/copyright to explain that.
+  * Now adds pkg-config support (fixed for Debian use).
+    (closes: #519251)
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Tue, 31 Mar 2009 09:53:03 +0200
+
+spatialite (2.3~beta1-1) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- Francesco Paolo Lovergine <frankie@debian.org>  Fri, 13 Mar 2009 16:01:40 +0100
